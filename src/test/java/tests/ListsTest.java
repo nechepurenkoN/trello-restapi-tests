@@ -39,7 +39,7 @@ public class ListsTest implements CleanBoards {
     }
 
     @Test
-    public void addListsCanBeDeleted() {
+    public void allListsCanBeDeleted() {
         Board defaultTodoBoard = BoardService.createDefaultTodoBoard();
 
         ListService.deleteAllLists(defaultTodoBoard);
