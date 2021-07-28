@@ -6,4 +6,5 @@ import lombok.experimental.UtilityClass;
 public class Endpoints {
     public final String TRELLO_API_BASE = "https://api.trello.com/1";
     public final String BOARDS = "boards";
+    public final String LISTS = "lists";
 }

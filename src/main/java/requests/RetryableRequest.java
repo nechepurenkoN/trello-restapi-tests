@@ -1,4 +1,4 @@
-package service;
+package requests;
 
 import io.restassured.response.Response;
 import java.util.List;

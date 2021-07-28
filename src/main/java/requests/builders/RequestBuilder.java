@@ -1,6 +1,6 @@
-package builders;
+package requests.builders;
 
-import service.Request;
+import requests.Request;
 
 public interface RequestBuilder {
     Request buildRequest();

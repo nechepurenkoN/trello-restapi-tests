@@ -1,4 +1,4 @@
-package service;
+package requests;
 
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -32,6 +32,7 @@ public class RestRequest implements Request {
 
     private RequestSpecification requestSpecification() {
         return new RequestSpecBuilder()
+            .setContentType(ContentType.JSON)
             .setAccept(ContentType.JSON)
             .build();
     }

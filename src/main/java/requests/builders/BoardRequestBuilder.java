@@ -1,10 +1,11 @@
-package builders;
+package requests.builders;
 
 import constants.Endpoints;
+import constants.Fields;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import service.RestRequest;
+import requests.RestRequest;
 
 public class BoardRequestBuilder extends BaseRequestBuilder<BoardRequestBuilder> implements RequestBuilder {
 
@@ -27,9 +28,24 @@ public class BoardRequestBuilder extends BaseRequestBuilder<BoardRequestBuilder>
         return this;
     }
 
+    public BoardRequestBuilder setName(String name) {
+        this.parameters.put(Fields.NAME, name);
+        return this;
+    }
+
+    public BoardRequestBuilder setDescription(String description) {
+        this.parameters.put(Fields.DESCRIPTION, description);
+        return this;
+    }
+
     private String constructUrl() {
-        return Stream.of(TRELLO_API_BASE, ENDPOINT, id, entity)
+        return Stream.of(TRELLO_API_BASE, ENDPOINT, id, entity, "")
                      .filter(Objects::nonNull)
                      .collect(Collectors.joining("/"));
+    }
+
+    public BoardRequestBuilder setDefaultLists(boolean needDefaults) {
+        this.parameters.put(Fields.DEFAULT_LISTS, String.valueOf(needDefaults));
+        return this;
     }
 }

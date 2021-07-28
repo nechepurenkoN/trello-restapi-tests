@@ -1,4 +1,4 @@
-package builders;
+package requests.builders;
 
 import constants.Credentials;
 import constants.Endpoints;
