@@ -14,5 +14,6 @@ public class BoardsPool {
 
     public static void deleteAll() {
         pool.forEach(BoardService::deleteBoard);
+        pool.clear();
     }
 }

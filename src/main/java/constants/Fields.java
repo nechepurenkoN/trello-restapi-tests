@@ -8,4 +8,5 @@ public class Fields {
     public final String DESCRIPTION = "desc";
     public final String DEFAULT_LISTS = "defaultLists";
     public final String BOARD_ID = "idBoard";
+    public final String LIST_CLOSED = "value";
 }

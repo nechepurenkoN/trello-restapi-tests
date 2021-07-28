@@ -43,4 +43,9 @@ public class ListsRequestBuilder extends BaseRequestBuilder<ListsRequestBuilder>
         this.parameters.put(Fields.BOARD_ID, id);
         return this;
     }
+
+    public ListsRequestBuilder setClosed(boolean needToClose) {
+        this.parameters.put(Fields.LIST_CLOSED, String.valueOf(needToClose));
+        return this;
+    }
 }

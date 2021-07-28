@@ -81,4 +81,39 @@ public class BoardService {
         BoardsPool.addBoard(board);
         return ListService.createListsOnBoard(customBoardListsNames, board);
     }
+
+    public static Board renameBoard(Board board, String name) {
+        return Caster.cast(
+            TrelloRestService
+                .boards()
+                .setMethod(Method.PUT)
+                .setId(board.getId())
+                .setName(name)
+                .buildRequest()
+                .send()
+                .then().assertThat()
+                .spec(ResponseSpecifications.goodResponseSpecification())
+                .and()
+                .extract().response(),
+            Board.class,
+            CastOptions.SINGLE
+        );
+    }
+
+    public static Board getBoardById(String id) {
+        return Caster.cast(
+            TrelloRestService
+                .boards()
+                .setMethod(Method.GET)
+                .setId(id)
+                .buildRequest()
+                .send()
+                .then().assertThat()
+                .spec(ResponseSpecifications.goodResponseSpecification())
+                .and()
+                .extract().response(),
+            Board.class,
+            CastOptions.SINGLE
+        );
+    }
 }

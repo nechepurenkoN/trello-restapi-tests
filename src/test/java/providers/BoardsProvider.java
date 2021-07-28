@@ -13,4 +13,12 @@ public class BoardsProvider {
             {BoardService.createBoardWithLists(customBoardListsNames), customBoardListsNames}
         };
     }
+
+    @DataProvider
+    public static Object[][] names() {
+        return new Object[][] {
+            {"Renamed board"},
+            {"Any name you like"}
+        };
+    }
 }
