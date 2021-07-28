@@ -6,4 +6,6 @@ import lombok.experimental.UtilityClass;
 public class Entities {
     public final String LISTS = "lists";
     public final String CLOSED = "closed";
+    public final String CARDS = "cards";
+    public final String ARCHIVE_ALL_CARDS = "archiveAllCards";
 }

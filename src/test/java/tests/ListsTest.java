@@ -1,8 +1,10 @@
 package tests;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import beans.Board;
+import constants.Errors;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -44,5 +46,17 @@ public class ListsTest implements CleanBoards {
 
         List<beans.List> lists = BoardService.getAllListsByBoard(defaultTodoBoard);
         assertThat(lists).as("All lists should be deleted and lists size is 0").hasSize(0);
+    }
+
+    @Test
+    public void listNameCannotBeEmpty() {
+        assertThatThrownBy(() -> {
+            Board boardWithEmptyList = BoardService.createBoardWithLists(List.of(""));
+        }).isInstanceOf(AssertionError.class)
+          .hasMessageContainingAll(
+              Errors.BAD_REQUEST,
+              Errors.BAD_CONTENT_TYPE
+          );
+
     }
 }

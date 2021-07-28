@@ -1,10 +1,13 @@
 package service;
 
 import beans.Board;
+import beans.Card;
+import constants.CastOptions;
 import constants.Entities;
 import io.restassured.http.Method;
 import java.util.List;
 import responses.ResponseSpecifications;
+import utils.Caster;
 
 public class ListService {
 
@@ -43,4 +46,34 @@ public class ListService {
             .then().assertThat()
             .spec(ResponseSpecifications.goodResponseSpecification());
     }
+
+    public static List<Card> getAllCards(beans.List list) {
+        return Caster.cast(
+            TrelloRestService
+                .lists()
+                .setMethod(Method.GET)
+                .setId(list.getId())
+                .setEntity(Entities.CARDS)
+                .buildRequest()
+                .send()
+                .then().assertThat()
+                .spec(ResponseSpecifications.goodResponseSpecification())
+                .and()
+                .extract().response(),
+            Card.class
+        );
+    }
+
+    public static void deleteAllCards(beans.List list) {
+        TrelloRestService
+            .lists()
+            .setMethod(Method.POST)
+            .setId(list.getId())
+            .setEntity(Entities.ARCHIVE_ALL_CARDS)
+            .buildRequest()
+            .send()
+            .then().assertThat()
+            .spec(ResponseSpecifications.goodResponseSpecification());
+    }
+
 }
